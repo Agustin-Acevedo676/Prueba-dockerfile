@@ -1,3 +1,15 @@
-FROM mysql
-ENV MYSQL_ROOT_PASSWORD=1234
+Dockerfile
+# Utiliza una imagen base oficial de MySQL
+FROM mysql:latest
+
+# Establece la contraseña del root de MySQL
+ENV MYSQL_ROOT_PASSWORD=tu_contraseña_segura
+
+# Copia un script para crear la base de datos y usuarios (opcional)
+COPY create_database.sql /docker-entrypoint-initdb.d/
+
+# Expone el puerto 3306 para conexiones MySQL
 EXPOSE 3306
+
+# Comando para iniciar el servidor MySQL
+CMD ["mysqld"]
